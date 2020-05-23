@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tic Tac Toe</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <style type="text/css">
+        td {
+            width: 100px;
+            height: 100px;
+            /* background-color: royalblue; */
+            
+        }
+
+        .vertical {
+            border-left: 2px solid black;
+            border-right: 2px solid black;
+        }
+
+         .horizontal {
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+        } 
+
+        body {
+            font-size: 20px;
+        }
+        .heading {
+            margin: auto;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.0em;
+
+        }
+
+        table {
+            text-align: auto;
+            margin: auto;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="heading">Tic Tac Toe</div>
+    <table class="my-table">
+        <tr>
+            <td></td>
+            <td class="vertical"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="horizontal"></td>
+            <td class="vertical horizontal"></td>
+            <td class="horizontal"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="vertical"></td>
+            <td></td>
+        </tr>
+        
+    </table>
+
+</body>
+</html>

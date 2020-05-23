@@ -1,0 +1,34 @@
+
+# required in mail:
+#------------------------------------------------------------
+Version:
+Kind: Notebook
+Metadata:
+#  basically title of the file/ its a unique identifier 
+  Name: 
+  #  when its created or last edited
+  Timestamp:
+  #  any other array of meta info
+  Tags: []
+Spec: 
+#  Subject name are unique, Mandatory
+  Subject: 
+
+  Chapter:
+  #  kinda title/heading Mandatory
+  Heading:
+  #  info sources Mandatory
+  Sources: []
+
+# will be replaces with note: and comment: 
+Notes:
+  - K: schema declaration
+    V: only few important ones are important
+  - K: first letter will be capital
+    V: else it will be cumbersome to lowercase them.
+  - K: indentation afterwards
+    V: will indent Notes afterwards to maintain quick note taking
+  - K: use comments and string tools of yaml 
+    V: at end it should be a valid yml file. 
+
+---

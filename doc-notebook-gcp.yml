@@ -1,0 +1,45 @@
+Version: v1
+Kind: Notebook
+Metadata:
+#  basically title of the file/ its a unique identifier 
+  Name: GCP
+  Timestamp: 23-May-2020
+  Tags: []
+Spec: 
+  Subject: GCP
+  Chapter: 
+  Heading: GCP Basics Compute and Storage
+  Sources: 
+    - udemy
+    - https://deloittedevelopment.udemy.com/share/1034XkCEUTdFZVR3w=/
+    - Google Cloud Platform (GCP) Fundamentals for Beginners
+Notes: 
+  - note: gcp basics
+    comment: it has data centers which combines to zones which combines to region. Regions provide data resilience. 
+      They are spread across continents
+
+  - note: components
+    comment: screenshot image containing all the components. Basic 3 building blocks compute, storage and network
+
+  - note: gcp resource organization
+    comment: hierarchy in pic. Organization - Folders - Project - Resource 
+
+  - note: gcloud access
+    comment: gloud can be accessed on many ways. Pics. Google shell provisions a VM with 5 GB ram. Run gcloud list regions
+
+  - note: 4 different types of services
+    comment: function; app ; K8s and compute. More info about which to choose in pic. 
+
+  - note: compute engine can be provision and usage
+    comment: use f1 server type with default memory 30 GB HDD to have free server for 730 hrs per month.
+      Need to check. We need to select region and zone as we discussed that's the grouping of their data centers in notes above. 
+
+  - note: cool way to login and run a web server
+    comment: pics attached. Need to run manually and note. 
+
+  - note: gcp storage
+    comment: storage class - cloud based - api access ; persistent disk like in laptop ; nas mount location. More details in slide. We can create a bucket and load files/data inside it. Run demo. 
+
+  - note: GCP compute server creation
+    comment: can be created useing a template. and we can also issue a 
+      startup command and time after which the server gets ready to server external requests. 

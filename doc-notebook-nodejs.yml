@@ -1,0 +1,101 @@
+Version: v1
+Kind: Notebook
+Metadata:
+#  basically title of the file/ its a unique identifier 
+  Name: NodeJS
+  Timestamp: 23-May-2020
+  Tags: []
+Spec: 
+  Subject: Node JS
+  Chapter: 
+  Heading: When and What of Node JS
+  Sources: [youtube video, "https://deloittedevelopment.udemy.com/course/the-web-developer-bootcamp/learn/lecture/3861508?start=0#overview"]
+Notes:
+  - note: When good
+    comment: Good for event driven apps like web servers, real time servers, network connection 
+
+  - note: When bad
+    comment: When large computational is needed
+
+  - note: How it does
+    comment: It makes a call and then it continues when the previous event responds back it takes care of it.. \
+        its the way JavaScript generally works. 
+
+  - note: Events and callbacks
+    comment: Events are put in queue the single thread picks ups and process it. 
+
+  - note: Single thread or not
+    comment: Node JS app has single working thread. Except concurrent API. But underlying app is \
+     C++ etc and the methods written in node js call C++, the methods in C++ may be multi threaded. 
+ 
+  - note: what is node JS
+    comment: Its just a runtime environment like JVM. Its called V8 engine developed by Google, It does JIT comilation of code in C++ and runs it. Its event based a concept of Java Script. 
+
+---
+Version: v1
+Kind: Notebook
+Metadata:
+#  basically title of the file/ its a unique identifier 
+  Name: NodeJS
+  Timestamp: 23-May-2020
+  Tags: []
+Spec:
+  Subject: Node JS
+  Chapter: 
+  Heading: Node JS Framework - Express the E of MEAN stack
+  Sources: ["https://deloittedevelopment.udemy.com/course/the-web-developer-bootcamp/learn/lecture/3861508?start=0#overview"]
+
+Notes:
+  - note: express
+    comment:  express is a web development lightweight framework.  
+      It has a server and takes port and hostname just like in props file of spring boot. 
+
+  - note: params in express passed from frontend 
+    comment:  path variables can be caught as /; pathVar can fetch value as req.params.pathVar
+
+  - note:  rendering pages in express 
+    comment: install ejs (embedded javascript) create a folder views in the project. Create a FILE.ejs. 
+      Now in app.get function res.render(FILE.ejs, {VAR-NAME-IN-EJS; VAR-NAME-HERE}) ; IN FILE.ejs to capture the value 
+      <%= VAR-NAME-IN-EJS %> This runs just like i read in NIIT. 
+
+  - note: syntax of ejs
+    comment:  <%= ‰> this gets evaluated and rendered and returned ; <‰ ‰> this will just run the code. 
+
+  - note:  ejs partials 
+    comment:  we can declare partial html code like headers, etc in a ejs file and then include it in every page. 
+      Can be done using <‰ include FILENAME ‰> Wherever the file code needs to be attached. 
+
+  - note:  post requests
+    comment:  requests library of node js can be used to call external APIs. 
+
+  - note:  framework versus libraries
+    comment:  major differences framework takes control it does inversion of control. Once we start something the flow of control
+     is taken up by the framework. While in libraries we have to call each and every method. Framework  can be heavy weight or
+     lightweight. Heavyweight does most of the works internally. Lightweight allows us to insert code in between. 
+
+  - note:  backend technologies like node.js etc
+    comment:  we can send a post request from html using form tag. On submission of request which has create type we can redirect to 
+     a view page. backend tech is supported by a backend technology like Java Dot net .. which is supported on a server and the data is
+     stored in a database. Node js runs JavaScript in backend like any other scripting language this allows JavaScript development in 
+     backend which was not possible earlier. Npm is to node js; like Maven to spring boot. It's their library manager. 
+
+
+  - note:  installation of node.js
+    comment:  it is installed using MSI file on windows. We can verify by running command not in the command prompt it will open a 
+      terminal like it does for python and we can run command there. Node space <filename> can run on node js. 
+
+
+  - note:  npm
+    comment:  it stands for node package manager. Address of common JavaScript logic in packages that we can use. 
+      Npm install <package name>
+
+
+  - note:  creating and adding dependency in package.json
+    comment:  its like pom.xml and just like it sits just under the project directory. To create package JSON we can run npm init.
+     Fill all the parameters. To add a dependency we can run npm install PACKAGE-NAME --save where package.json is present. 
+  
+  - note: Web backend
+    comment: using and tech like Node js that returns html css and js
+
+  - note: cloud 9 and alternatives
+    comment: can be used to developerment and tun of code online. They can be shared live and we can take help from other developers. 

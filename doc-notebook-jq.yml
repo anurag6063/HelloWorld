@@ -1,0 +1,47 @@
+Version: v1
+Kind: Notebook
+Metadata:
+#  basically title of the file/ its a unique identifier 
+  Name: jQuery
+  Timestamp: 23-May-2020
+  Tags: []
+Spec: 
+  Chapter: 
+  Subject: jQuery
+  Heading: Advaced qQuery; Animations
+  Sources: 
+    - udemy
+    - https://deloittedevelopment.udemy.com/course/the-web-developer-bootcamp/learn/lecture/3861508?start=0#overview
+    
+Notes: 
+  - note: jq events
+    comment:  click, keypress and on() methods can do it.
+  - note: jq objects 
+    comment: jqObjects gets created when we call $([something]); same goes for this keyword,\
+      in jq its $(this)/
+  - note: types of keypress
+    comment: keyup() - when key is comes up, keydown()- when key is pressed down,
+     keypress() - generally fires at midpoint between up and down, this is best one and generally used. \
+     it gives exact character pressed, since character can change when pressed with special keys like shift.
+
+  - note: all the above events, click, keypress() etc plus others can be captured in on()
+    comment: this takes on(["type of call"], function(){})'; use this inside its function so that its pin pointed
+      and not all the objects of that type get affected.
+
+  - note: event keyword
+    comment: in function() the first param that comes in is an event object from JS library, as in JAVA the type always stands \
+      as event so here we can name the object event as anything, like in java -> Event e ; Event ev ; Event event
+      as in jave we have standard to name the object as the Type if we can we use event name
+      
+  - name: difference b/w on and click/keypress
+    comment: on() can add event listner on elements that have not been rendered unlike others. the first element whould be the one that really exists when the page is rendered.
+
+  - name: fading effects
+    comment: we can fade in, out or toggle. better use toggle, toggle class and the effect happens.
+
+  - name: slide up/down/toggle 
+    comment: they can pull an element from down to up, up to down and do revers of current state respectively.
+
+
+---
+

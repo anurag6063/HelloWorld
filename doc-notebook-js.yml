@@ -1,0 +1,55 @@
+Version: v1
+Kind: Notebook
+Metadata:
+#  basically title of the file/ its a unique identifier 
+  Name: JavaScript
+  Timestamp: 23-May-2020
+  Tags: []
+Spec: 
+  Subject: JavaScript
+  Heading: origin of javascript 
+  Sources: [ https://handbook.selflanguage.org/4.5/intro.html , "web"]
+  Chapter: 
+
+Notes: 
+  - note: Origin of JavaScript
+    comment: Self is a prototype-based dynamic object-oriented programming language, environment, and virtual machine centered around \
+      the principles of simplicity, uniformity, concreteness, and liveness. \  
+      JavaScript was created by Brendan Eich in 1995 during his time at Netscape Communications. It was inspired by Java, Scheme and Self.
+      Scheme is primarily a functional programming language. It shares many characteristics with other members of the Lisp programming
+      language family. Scheme's very simple syntax is based on s-expressions, parenthesized lists in which a prefix operator is followed
+      by its arguments. Scheme programs thus consist of sequences of nested lists. Lists are also the main data structure in Scheme, 
+      leading to a close equivalence between source code and data formats (homoiconicity). Scheme programs can easily create and evaluate 
+      pieces of Scheme code dynamically.
+
+---
+Version: v1
+Kind: Notebook
+Metadata:
+#  basically title of the file/ its a unique identifier 
+  Name: JavaScript
+  Timestamp: 23-May-2020
+  Tags: []
+Spec:
+  Subject: JavaScript
+  Chapter: 
+  Heading: Arrays and Objects
+  Sources: [udemy, "https://deloittedevelopment.udemy.com/course/the-web-developer-bootcamp/learn/lecture/3861508?start=0#overview"]
+Notes: 
+  - note: Array and Objects common
+    comment: Both can hold any type of data. 
+
+  - note: Arrays access and methods 
+    comment: We have builtin functions like Push- adds element at end, Pop; removes element from end, Shift; 
+      Adds at start and unshift, removes from start. Slice, to form a sub array.
+
+  - note: Arrays InfexOf
+    comment: Can be used to find index of a existing element of -1 to say its not there.
+
+  - note: More info as screenshots in folder
+    comment: on array and object and their comparison.
+
+
+
+---
+
