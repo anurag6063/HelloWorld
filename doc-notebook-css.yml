@@ -1,0 +1,63 @@
+Version: v1
+Kind: Notebook
+Metadata:
+#  basically title of the file/ its a unique identifier 
+  Name: CSS
+  Timestamp: 24-May-2020
+  Tags: []  
+Spec:
+  Subject: CSS
+  Chapter: 
+  Heading: basics
+  Sources: [ udemy, https://deloittedevelopment.udemy.com/course/the-web-developer-bootcamp/learn/lecture/3861508?start=0#overview]
+Notes:  
+  - note: CSS stands for cascading style sheet. 
+    comment: to cascade means pass or arrange sequentially. It's generally different sheet. 
+      There like properties in springboot. 
+
+  - note: general rule
+    comment: > 
+     SELECTOR { KEY: VALUE }r h1 { size: 19} 
+     ,sequentially.
+
+  - note: different ways to add style
+    comment: > 
+      a) in HTML element directly , h1 {style= "color=red"},
+      b) in head using style tag, <head> <style type="css/text"> h1 {color: red} </style></head>
+      c) in a stylesheet. Best is in a different sheet. But in element class overrides others. 
+         <link href="./lib/my.css">
+
+  - note: color coding
+    comment: > 
+      a) heaxadeciimal no -> #intesite-of-red-green-blue
+      b) rgb() -> 3 nos varing from 0 to 255
+      c) rgba() -> 3 nos for rgb and 0 to 1 for transperancy factor. 
+
+  - note: background
+    comment: we can set either an image of a color. using background\ \[URL\]; or  background-repete [URL] or color code
+       
+  - note: border
+    comment: has 3 components; width, color and style -> border { WIDTH STYLE COLOR} { 2px dashed blue}
+
+  - note: element selector
+    comment: < 
+      a) simple- ELEMENT name  like hq, body ; needs no additonal Chapter
+      b) Id - needs hash at start ; Id can be just one per page.
+      c) Class - used as .CLASSNAME {} 
+      d) combinations - is generally more specific h1 first-n
+
+  - note: specificity
+    comment: Why - because its cascaded style, parents syle affects all its children till they overwrite it.
+      we can online specificity calculator this no tell which style will finally run an a elemnt, in CSS 
+      debug console if child overrides parents style the parent style can be seen as strikedthrough.
+      to specific something on all elements we can say *{}; 
+
+  - note: fonts
+    comment: font-family; font-size -> in pixel thats absolute or in em that's relative to base size, while using
+      em bettter alter base size of the whole bosy first. font-weight; is for how bold. we have fonts in 
+      google fonts, insert the link and class from there to use. 
+
+  - note: text 
+    comment: >
+      a) text-aling - left right, center, float 
+      b) text decorate - highlight, strikethrough etc

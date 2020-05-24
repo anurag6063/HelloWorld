@@ -1,0 +1,16 @@
+Version: v1
+Kind: Notebook
+Metadata:
+#  basically title of the file/ its a unique identifier 
+  Name: HTML
+  Timestamp: 24-May-2020
+  Tags: []
+Spec:
+  Subject: html
+  Chapter: 
+  Heading: Basics
+Notes:
+
+  - note: mozialla developer network has large no of resources on html
+    comment: basic elements doctype, html, body, head, thead, th, tr, form with action and type, select with options for drop-down,
+      textarea fir large text. 

@@ -1,0 +1,53 @@
+Version: v1
+Kind: Notebook
+Metadata:
+#  basically title of the file/ its a unique identifier 
+  Name: JAVA
+  Timestamp: 23-May-2020
+  Tags: []
+Spec:
+  Subject: JAVA
+  Chapter:
+  Heading: Basics
+  Sources: [ udemy , https://deloittedevelopment.udemy.com/course/java-the-complete-java-developer-course/learn/lecture/4111654?start=150#overview ]
+Notes: 
+  - note: Basics
+    comment: the keywords are case sensitive; if we put in interger_maxvalue  + 1 Java doesn't throws an exception rather it tries to fit in this is called overflowing. Be careful with limits. 
+      Basic types are char byte short long double integer Boolean
+      Long has a capital l at the end. And float has  small f at end. Double small d at end. \u in char mean its a Unicode. Unicode-table.com 
+
+  - note: switch cases
+    comment: can be combined case a; case b; ... Break () 
+
+  - note: while statement 
+    comment: while is ugly and hard to understand as instantiation checking and increment is indifferent line. 
+
+  - note: constructors
+    comment: can be used to create an object with default values. One constructor can call another one. To reduce code duplication. This is used to refer local variables. Super is used to call parent constructor. 
+
+  - note: overriding
+    comment: if in child we have same method signature as parent then the child overrides the parent method. To call parent method use super keyword. By default child method is called. 
+
+  - note: pass by reference vs value
+    comment: Java objects are pass by reference. Only primitives hold real value. 
+
+  - note: ploymorphisim  
+    comment: remote left hand side should be generic time and write inside should be the implementation time. This also gives Liberty to change implementation in future. 
+
+  - note: arrays
+    comment: very old concept. Has very limited functionality. Like length and its static thus its not a function like size() .. we cannot change the size of an array once created. Dynamic arrays are called arraylist. 
+
+  - note: arraylist
+    comment: it accepts only classes. Does we have to convert int  to integer class. Java does this automatically and called autoboxing. Also type-safe. ArrayList<Person> using generics. 
+
+  - note: linked lis
+    comment: objects are attached by pointers. Use listIterator to effectively traverse it. Insert and delete is less expensive. Memory for each object held is dynamic does we cannot traverse its sequentially. Linkedlist had same functions as araayList. Java has implemented real implementation inside. 
+
+  - note: inner class
+    comment: when class needs to be used only by one class.  the inner class has access to all the variables of parent class even private. Shadowing can happen if variables have same name in parent and child. To call inner class. The first need to create the parent object then with it call the child class. 
+
+  - note: abstract class
+    comment: can be instantiated. Child class can  extend one parent abstract class else can cause diamond problem. Can have non static field. Used when related class needs to have a class with common code. 
+
+  - note: generics
+    comment: implemented in 1.5. It provides type safety. Also helps in polymorphism.
