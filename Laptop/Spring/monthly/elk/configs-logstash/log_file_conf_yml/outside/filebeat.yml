@@ -1,0 +1,71 @@
+
+# file input : knowledge_archival
+filebeat.inputs:
+- type: log
+  enabled: true
+  reload.enabled: true
+  paths:
+    - 'E:\casearchival\Xceedium\RelatedXMLs\*.xml'
+
+
+  fields:
+    type: 'xceedium'
+    source: 'Xceedium Archive Repository'
+    file_type: 'relatedxml'
+    sub_category: 'xceedium'
+    url: 'https://casupport-qa.broadcom.com/case/archived?'
+    
+   
+   
+  multiline.pattern: ^
+  multiline.max_lines: 50000
+  multiline.timeout: 10s
+  multiline.match: after
+
+  fields_under_root: true
+  encoding: utf-8
+  exclude_files: ['.zip', '.gz$']
+  scan_frequency: 24h
+  harvester_limit: 60000    
+  close_eof: true
+
+
+#============================= Filebeat modules ===============================
+
+filebeat.config.modules:
+  # Glob pattern for configuration loading
+  path: ${path.config}/modules.d/*.yml
+
+  # Set to true to enable config reloading
+  reload.enabled: false
+
+  # Period on which files under path should be checked for changes
+  #reload.period: 10s
+
+#==================== Elasticsearch template setting ==========================
+
+setup.template.settings:
+  index.number_of_shards: 1
+  #index.codec: best_compression
+  #_source.enabled: false
+
+#----------------------------- Logstash output --------------------------------
+output.logstash:
+  # The Logstash hosts
+  hosts: ["10.85.18.207:1947","10.85.18.207:1948"]
+  bulk_max_size: 8192
+  worker: 8
+  loadbalance: true
+#output.logstash:
+  # The Logstash hosts
+  #hosts: ["localhost:5044"]
+
+  # Optional SSL. By default is off.
+  # List of root certificates for HTTPS server verifications
+  #ssl.certificate_authorities: ["/etc/pki/root/ca.pem"]
+
+  # Certificate for SSL client authentication
+  #ssl.certificate: "/etc/pki/client/cert.pem"
+
+  # Client Certificate Key
+  #ssl.key: "/etc/pki/client/cert.key"

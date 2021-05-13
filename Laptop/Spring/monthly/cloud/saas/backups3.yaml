@@ -1,0 +1,19 @@
+apiVersion: pxc.percona.com/v1
+kind: PerconaXtraDBClusterBackup
+metadata:
+  name: backup1-cluster1-manual4-gcs
+spec:  
+  pxcCluster: cluster1
+  # storageName: fs-pvc
+  storageName: s3-us-west
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+ name: mysql-cluster-backup-s3
+type: Opaque
+data:
+  AWS_ACCESS_KEY_ID: NXYzQXJoZjZTNCtoWlZNY1lHYzV6UUpJSzByUUtEcXBnNGNyU0pMdgo=
+  AWS_SECRET_ACCESS_KEY: R09PRzFFSE80SkFOR09MVFZMRkRTWjNWSlJSQkxHVFpNN0VZSUVBUVJEQ1JRUTNYM1JLVk9JV1RIR1FQWQ==

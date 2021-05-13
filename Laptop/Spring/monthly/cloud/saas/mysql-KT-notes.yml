@@ -1,0 +1,228 @@
+--- 
+# Create Cluster and Admin it.
+# present only in the branch owned by admin team. 
+- a: operations that a cluster admin can do, has to do to monitor the cluster / setup the MySQL cluster
+  c:  this is done using percona operator. 
+      has 3 steps mainly. 
+      a) clone the master branch, do required changes and push it back. once in master the CI-CD will kick deplou-info.
+      b) deploy-info will pull the operator code and images to GCR.
+      c) run the co mentioned in ReadMe and verify. This should create the cluster.
+
+- a: images pull
+  c: can be done by deploy-info. 
+     Note; team name should be mysql-operator. push deploy-info to github. This will pull images from artifactory to GCR. 
+     also check fro env props
+
+- a: percona
+  c: provides Xtra DB which has MySQL operator indeide it. 
+     https://www.percona.com/doc/kubernetes-operator-for-pxc/kubernetes.html
+     https://www.percona.com/doc/kubernetes-operator-for-pxc/index.html - list of all  
+     https://medium.com/oracledevs/getting-started-with-the-mysql-operator-for-kubernetes-8df48591f592 - quick and easy but not my percona
+     percona is the one used by our team
+
+- a: images in GCR.
+  c: once we push the deploy-info.yml the CI-CD will pull images to GCR;
+     {do and check}
+
+- a: manually 
+  b: apply crd ; validate
+     create cluster role and role binding; 
+       create mysql-operator named service account and gives it required permissions
+       note - the service account is created by the CI/CD but no privialage is given to it. its given above by explicit commands
+
+- a: new images/operator by percona
+  c: needs to be pulled to GCR and then applied manually by SAAS in fututre 
+
+- a: project name
+  c: should be the namespace of k8s wehere we wanna deploy. The namespace is created beforehand.
+
+
+---
+# backup 
+
+- a: backup
+  c: |
+       setting mentioned inside schedule: in cr.yml
+       needs: name; schedule; keep; storage-name;
+       storage-name - predifined can be a PVC or a bucket; bucket - weekly backup, PVC daily backup (as of now)
+       keep: no of last backups to hold at once 
+
+
+- a: modifications needed when trying a backup
+  c: |
+       values.yml : action - deploy-cluster
+       deploy-info.yml: project-name ; should be the namespace
+       cr.yml: schedule section - 
+
+       all inside operator folder
+
+       It will create a Cron Job ; we can check it in WorkLoad Tabs in GCP console.
+       the backup will be created and seen in storage tab in GCP; filter by namespace if needed.
+
+       {if names clash the backups will be overwitten unclear} - if done manually and the backup names clash.
+
+
+
+
+---
+# Backup and Restore
+
+
+- a: 
+  c: | 
+       backup.yml 
+       has the name of the backup 
+       type of storage from where 
+
+       in values.yml 
+       action: restore-cluster
+
+       in Restore.yml inisde operator folder
+       enter proper spec values
+
+       trigger pipeline and it will restore-cluster
+       {which one will restored; ideally latest one}
+
+---
+
+types-created: |-
+                  kind created as per crd
+
+                  PerconaXtraDBBackup
+                  PerconaXtraDBClusterRestore
+                  PerconaXtraDBClusterBackup
+                  PerconaXtraDBCluster
+
+
+
+
+
+---
+
+a: jenkins file triggers auto deployment
+deploy-info.yml : email will triggered to this
+k8s.images.env: name of the cluster; k8s engine (GCP)  ; can be found in GCR too; will be provided by IT Ops team; the same name is present in GCR repo path too.
+values.yml: API IP ; Kub proxy API
+image repo: update in all places
+backup: only on s3 compatible storage; like GCP bucket; or else in PVC file system
+cr: https://www.percona.com/doc/kubernetes-operator-for-pxc/operator.html
+sajdn: https://www.percona.com/doc/kubernetes-operator-for-pxc/TLS.html
+backup.yml: to do a manual backup; 
+k: it was initially made for AWS so secret name key can have AWS_ as //www.percona.com/doc/kubernetes-operator-for-pxc/index.html
+   the secrets are base64 encoded.
+v: 5.6 version compatible to 8 
+
+
+working-pipeline-loc: https://github.gwd.broadcom.net/dockcpdev/sedicddata-gdu1-js/tree/pipeline_sedicddata-js-mysql-operator
+
+
+
+---
+
+deploy-info.yml : |-
+            its key names were present only in readme.md nowhere else; This may have been used to authenticate the user to the pipeline.
+            project_name: "mysql-malhamada"                         -> namespace
+            base_project_name: "mysql-operator"                     -> base namespace
+            distribute_to_bintray: "yes"
+            operator: "true"
+            operator_service_account: "mysql-operator"              -> should be the one as created by admin team. 
+            team:
+              name: "mysql-operator"
+              token: "77fc334c-7ff4-8f6d-f317-680f676e4675"
+            email: "ratna.manyala@broadcom.com"                     -> to recieve jenkins notification.
+            version: "1.0"
+            entrypoint: "helm"                                      -> maybe how to start the pipeline`
+            kubernetes:
+              env:
+                name: "gkegtsoent"                                  -> the name of the GCP cluster its not the name that's displayed on GCP
+               
+            google_chat:
+              token: "CKaHyDeeoSnfB7lhtH9YIQAAe"
+
+
+---
+
+helm-command.yml: |
+                    all in C:\Users\anuryadav\Desktop\dustbin\mysql-operator
+                    this calls the hosted tgz file with some params and params are passed by applying values files ; -f values.yaml
+
+                     Example: 
+                     repo: https://artifactory-lvn.broadcom.net/artifactory/helm-release-candidate-local
+                      chart: mysql-operator/mysql-operator-1.1.2.tgz
+                      values: ./values.yaml
+                      command: upgrade
+                      commandOptions: "--install"
+                      #command: test
+                      #commandOptions: ""
+                      releaseName: mysql-operator 
+
+                    all valid helm commands can be run using this with admin access.
+
+jenkinsFile: |
+                @Library('casaas-tools-pipeline-library@dev') _
+                node {
+                  runDefaultCDPipeline {}
+                }
+
+                {not sure how it know about running}
+                jenkins pipeline is defined in casaas-tools-pipeline-library@dev 
+                Its a common pipeline. like a template.
+                to call it we use node { methodName() }
+
+MakeFile: | 
+            seems to be creating the tgz file:
+            {But what is a MakeFile?}  
+
+            Its trying to zip and upload the tgz file in the repo. Tests can be run on it.
+            "$$ARTIFACTORY_USER:$$ARTIFACTORY_PASS" here $$ means it may be coming from somewhere else
+            $ means its getting from the declared variables.
+
+            More info: https://opensource.com/article/18/8/what-how-makefile
+            
+              Ex: 
+
+              repo=https://artifactory-lvn.broadcom.net/artifactory/helm-release-candidate-local
+              chart=mysql-operator/mysql-operator-1.1.1.tgz
+
+              upload:
+                tar czfv mysql-operator.tgz   -C `pwd`/chart/ mysql-operator
+                curl -sSf -u "$$ARTIFACTORY_USER:$$ARTIFACTORY_PASS" \
+                  -X PUT \
+                  -T mysql-operator.tgz \
+                  '$(repo)/$(chart)'
+
+              test:
+                helm template mysql chart/mysql-operator --namespace mysql -f values.yaml
+
+              This activity is done my admin team and the file MakeFile is pre only in an admin pipeline.
+
+
+values.yaml: |
+
+                used for applying files inside operators folder
+                all params: https://www.percona.com/doc/kubernetes-operator-for-pxc/operator.html
+                full setup: https://www.percona.com/doc/kubernetes-operator-for-pxc/kubernetes.html
+
+                                
+                # Command to run. Applies yaml from the operator folder:
+                ## deploy-cluster:  applies backup-s3.yaml, rbac.yaml, operator.yaml, secrets.yaml, ss-secrets.yaml, cr.yaml
+                ## backup-cluster:  applies backup.yaml
+                ## restore-cluster: applies restore.yaml
+                ## delete-cluster:  deletes cr.yaml
+                ## list-backups:    applies 'kubectl get pxc' and 'kubectl get pxc-backups'
+                ## delete-backup:   provide name of backup to delete. Applies 'kubectl delete pxc-backup <backup-name>'
+                ## update-cluster:  provide the Percona Operator and API versions and cluster name to update. Patches cluster pods to defined version.
+                # Ensure the yaml in the operator folder contains what you want to apply before triggering the CD Pipeline
+                # See https://www.percona.com/doc/kubernetes-operator-for-pxc/operator.html for options
+                command: deploy-cluster
+
+                {whats |- ?}
+                the hyphen is used to; You can use the "block chomping indicator" to eliminate the trailing line break, as follows
+
+
+
+---
+
+
+Heml: |- 
+          https://helm.sh/docs/chart_template_guide/control_structures/

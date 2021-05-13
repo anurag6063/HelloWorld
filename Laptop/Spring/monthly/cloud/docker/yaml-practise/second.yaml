@@ -1,0 +1,6 @@
+apiVersion: app
+kind: Pod
+metadata:
+  label:
+    name: Manual
+spec: alam

@@ -1,0 +1,90 @@
+
+key:  GOOG77E4NAR23L4ARXDC3I3X 
+secret: nV5DJu7+8i9x/yIdTME9uHYk19nknsZwst/0ywC+
+
+setup-download: git clone -b release-1.4.0 https://github.com/percona/percona-xtradb-cluster-operator; This creates a set of file all mentioned in deploy folder like cr, backup, backup-s3
+create crds: apply crd.yaml
+             creates 4 kind of percona custom objects.
+namespace: to differenciate the resources generated here. and switch ot it. 
+            kubectl config set-context --current --namespace=pxc
+            note that CRD are not scoped to namespace, other things are.
+
+Role Object: Creates a Role pbject with required permission. maily to percona-xtradb-cluster-operator
+              
+              o/p
+              role.rbac.authorization.k8s.io/percona-xtradb-cluster-operator created
+              serviceaccount/percona-xtradb-cluster-operator created
+              rolebinding.rbac.authorization.k8s.io/service-account-percona-xtradb-cluster-operator created
+
+Operator: create Operator
+            Operator also generates the ssl certificatess automatically. We can do manually if we wish.
+Secrets: create a secret obj with 5 secret data. this will be used by different objects. secrets.yaml
+
+## till now only the operator pod is created. and 2 secrets.
+
+create the cluster: |- 
+  use cr.yaml
+
+  Creates Obj type PerconXTraDBCluster:
+    uses all the secret obj we have created and ones the operator has created.
+
+  creates:
+    proxysql
+    pmm
+    backup
+
+  in real objects.created as:
+    cluster1-proxysql : StaefulSets
+    cluster1-pxc      : StatefulSetsS
+    daily-backup      : CronJob
+    sat-night-backup   : CronJob
+
+
+
+HMAC: |-
+  gsutil hmac create -p encoded-mark-274206 encoded-mark-274206@appspot.gserviceaccount.com
+  Access ID:   GOOG1EENTLZUMD75WTJPX5LVG4PSEZAEM4AMBUMIQJCMKFFSBMOSOLBYCDGBY
+  Secret:      GWv+WvKPD7uRO++FXRQYUXj56zdJ0MyRHk3PCbyo
+
+  Credential=GOOG1EENTLZUMD75WTJPX5LVG4PSEZAEM4AMBUMIQJCMKFFSBMOSOLBYCDGBY\n/20200616/us-east-1/s3/aws4_request
+  Signature=834673ea54ff4877f6dd8ef20bf266d683ebde400856c7dd5bc7db8e36566b41
+
+  GOOG1EENTLZUMD75WTJPX5LVG4PSEZAEM4AMBUMIQJCMKFFSBMOSOLBYC
+
+
+  Try2: 
+  gsutil hmac create -p encoded-mark-274206 encoded-mark-274206@appspot.gserviceaccount.com
+Access ID:   GOOG1E4YTJC7CWAW2NMIKE6XQQPTSDB3Y6YVODNZOUFPXIUZPTGYUQ6K2X7SA   
+Secret:      G4/CkbqAurBFUx15C8jyU4bq4HGAb3uE+TJEIG2j
+
+▒▒NL▒▒  `▒(N▒A▒H0wc▒83Y9AO\▒=1▒Q▒▒~▒
+
+---
+
+cat <<EOF | kubectl apply -f
+apiVersion: pxc.percona.com/v1
+kind: PerconaXtraDBClusterBackup
+metadata:
+name: backup1
+spec:
+pxcCluster: cluster1
+storageName: s3-us-west
+EOF
+
+
+
+
+kubectl apply -f deploy/crd.yaml
+kubectl create namespace pxc
+kubectl config set-context $(kubectl config current-context) --namespace=pxc
+kubectl apply -f deploy/rbac.yaml
+kubectl apply -f deploy/operator.yaml
+kubectl apply -f deploy/secrets.yaml
+kubectl apply -f deploy/cr.yaml
+
+kubectl run -i --rm --tty percona-client --image=percona:5.7 --restart=Never -- bash -il
+percona-client:/$ mysql -h cluster1-proxysql -uroot -proot_password
+
+
+GOOG77E4NAR23L4ARXDC3I3X
+nV5DJu7+8i9x/yIdTME9uHYk19nknsZwst/0ywC+

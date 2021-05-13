@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/load-balancer-type: Internal
+    meta.helm.sh/release-name: mysql-operator-testvibz
+    meta.helm.sh/release-namespace: sedicddata-js-dev
+  creationTimestamp: "2020-06-12T05:12:29Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app.kubernetes.io/instance: cluster4
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: percona-xtradb-cluster
+  name: cluster4-proxysql-lb
+  namespace: sedicddata-js-dev
+  resourceVersion: "30905847"
+  selfLink: /api/v1/namespaces/sedicddata-js-dev/services/cluster4-proxysql-lb
+  uid: d8e8f2da-686c-411f-a3f8-bb4c25ebb436
+spec:
+  clusterIP: 172.24.74.179
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: mysql
+    nodePort: 30394
+    port: 3306
+    protocol: TCP
+    targetPort: 3306
+  selector:
+    app.kubernetes.io/component: proxysql
+    app.kubernetes.io/instance: cluster4
+    app.kubernetes.io/name: percona-xtradb-cluster
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}

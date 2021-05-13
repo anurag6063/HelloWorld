@@ -1,0 +1,15 @@
+#jsonout=$(< $1 xml2json)                                                                                                                                           
+#echo "json formed is : $jsonout"                                                                                                                                   
+#jsonout=$(< $1 xml2json | jq '.name=.RelatedContent_Fields.name')                                                                                                  
+                                                                                                                                                                    
+#                                                                                                                                                                   
+echo "fileName: $1"                                                                                                                                                 
+fileName=$1                                                                                                                                                         
+datetime=$(date)                                                                                                                                                    
+echo "date is : $date "                                                                                                                                             
+#tem=$(date)                                                                                                                                                        
+#echo "tem : $tem"                                                                                                                                                  
+# parsing JSON                                                                                                                                                      
+jsonout=$(< $1 xml2json | jq --arg fileName "$fileName" --arg datetime "$datetime" '.xmldata=. | del(.RelatedContent_Fields) | .timestamp=$datetime | .fileName=$fil
+#< $jsonout jq '.name = $date'                                                                                                                                      
+curl -X POST http://34.73.47.238:9200/test_docker_v3/doc/ -d "$jsonout" -H "Content-Type:application/json"

@@ -1,0 +1,15 @@
+---
+#--- trying it out
+"markdown.previewFrontMatter": "show"
+
+apiVersion: api
+kind: Pod
+metadata:
+  name: first
+  label:
+    env: dev
+    test: asjh
+    askj: aksh
+    sdkjb: sdh
+    
+

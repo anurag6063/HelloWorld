@@ -1,0 +1,4 @@
+cat ./kubectl-hello
+echo "hello-world"
+sudo chmod +x ./kubectl-hello
+sudo move ./kubectl-hello /tmp

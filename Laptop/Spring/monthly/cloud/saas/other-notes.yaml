@@ -1,0 +1,26 @@
+
+#Others Notes
+---
+
+
+GKE-1: https://console.cloud.google.com/kubernetes/list?project=saas-dev-us-cstack-gke1&authuser=1&folder&organizationId
+VPN: Las Vegas ; Ashburn - full tunnel
+ES-AIOPS-Monitoring: https://techdocs.broadcom.com/content/broadcom/techdocs/us/en/ca-enterprise-software/it-operations-management/dx-apm-saas/SaaS/implementing-agents/infrastructure-agent/elasticsearch-monitoring.html#concept.dita_cde2c34a7f7a85562d730faeeb90e7906a2f17bc_ElasticsearchMetrics
+Internal Load balancer: |- 
+                            Internal TCP/UDP Load Balancing makes your cluster's services accessible to applications outside of your cluster that use the same VPC network and are located in the same Google Cloud region. For example, suppose you have a cluster in the us-west1 region and you need to make one of its services accessible to Compute Engine VM instances running in that region on the same VPC network.
+                            You can create an internal TCP/UDP load balancer by creating a Service resource with the cloud.google.com/load-balancer-type: "Internal" annotation and a type: LoadBalancer specification. The instructions and example below highlight how to do this.
+
+HMAC: |-
+        auth: https://cloud.google.com/storage/docs/migrating#authentication
+        keys: https://cloud.google.com/storage/docs/authentication/hmackeys
+            
+
+        Access ID: A 24 character alphanumeric string, which is linked to your Google account. An example of an access ID:
+
+        GOOGTS7C7FUP3AIRVJTE2BCD
+
+        Secret: A 40 character Base-64 encoded string that is linked to a specific access ID. A secret is a preshared key that only you and Cloud Storage know. You use your secret to create signatures as part of the authentication process. An example of a secret:
+
+        bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzJ
+
+percona extra db google doc backup script: https://cloud.google.com/solutions/mysql-hot-backups

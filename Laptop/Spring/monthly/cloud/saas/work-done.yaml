@@ -1,0 +1,11 @@
+deploy-cluster: done; applies backup-s3.yaml, rbac.yaml, operator.yaml, secrets.yaml, ss-secrets.yaml, cr.yaml
+backup-cluster: done; backup1-cluster1-manual3-pvc;  applies backup.yaml
+restore-cluster: done; backup1-cluster1-manual3-pvc; applies restore.yaml .
+delete-cluster:  done; cluster2; deletes cr.yaml
+list-backups:   cancelled ; run 'kubectl to find the list. applies 'kubectl get pxc' and 'kubectl get pxc-backups'
+delete-backup:  done; backup1-cluster1-manual3-pvc; provide name of backup to delete. Applies 'kubectl delete pxc-backup <backup-name>'
+update-cluster: pending; can't be tested till percona comes up with new version;
+
+Issue: |-
+    s3: backup, delete restore testing pending;
+    loadbalancer: Internal unable to create.; happening across products; looking into ot.

@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: mysql-operator-1-1591677876
+    meta.helm.sh/release-namespace: sedcwa-dev-mysql-operator
+  creationTimestamp: "2020-06-09T04:44:39Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app.kubernetes.io/instance: cluster1
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: percona-xtradb-cluster
+  name: cluster1-proxysql-lb
+  namespace: sedcwa-dev-mysql-operator
+  resourceVersion: "26305646"
+  selfLink: /api/v1/namespaces/sedcwa-dev-mysql-operator/services/cluster1-proxysql-lb
+  uid: 89c3d78c-5a35-4b7f-970c-af11132416b3
+spec:
+  clusterIP: 172.24.41.90
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: mysql
+    nodePort: 30109
+    port: 3306
+    protocol: TCP
+    targetPort: 3306
+  selector:
+    app.kubernetes.io/component: proxysql
+    app.kubernetes.io/instance: cluster1
+    app.kubernetes.io/name: percona-xtradb-cluster
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 34.86.86.7

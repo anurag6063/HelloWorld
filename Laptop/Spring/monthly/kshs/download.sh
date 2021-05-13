@@ -1,0 +1,10 @@
+wget --header="Authorization: Bearer OxV6pG9dz2RkJq96PCCFP8KVnb1bUvxL" https://api.box.com/2.0/files/551498593486/content -O 'CaseComments-From2018Jan1st-To-End-File1-Of-7498128.xml' &
+wget --header="Authorization: Bearer OxV6pG9dz2RkJq96PCCFP8KVnb1bUvxL" https://api.box.com/2.0/files/551498604286/content -O 'CaseComments-From2018Jan1st-To-End-File10-Of-7498128.xml' &
+wget --header="Authorization: Bearer OxV6pG9dz2RkJq96PCCFP8KVnb1bUvxL" https://api.box.com/2.0/files/551498617486/content -O 'CaseComments-From2018Jan1st-To-End-File2-Of-7498128.xml' &
+wget --header="Authorization: Bearer OxV6pG9dz2RkJq96PCCFP8KVnb1bUvxL" https://api.box.com/2.0/files/551498610286/content -O 'CaseComments-From2018Jan1st-To-End-File3-Of-7498128.xml' &
+wget --header="Authorization: Bearer OxV6pG9dz2RkJq96PCCFP8KVnb1bUvxL" https://api.box.com/2.0/files/551498612686/content -O 'CaseComments-From2018Jan1st-To-End-File4-Of-7498128.xml' &
+wget --header="Authorization: Bearer OxV6pG9dz2RkJq96PCCFP8KVnb1bUvxL" https://api.box.com/2.0/files/551498600686/content -O 'CaseComments-From2018Jan1st-To-End-File5-Of-7498128.xml' &
+wget --header="Authorization: Bearer OxV6pG9dz2RkJq96PCCFP8KVnb1bUvxL" https://api.box.com/2.0/files/551498598286/content -O 'CaseComments-From2018Jan1st-To-End-File6-Of-7498128.xml' &
+wget --header="Authorization: Bearer OxV6pG9dz2RkJq96PCCFP8KVnb1bUvxL" https://api.box.com/2.0/files/551498613886/content -O 'CaseComments-From2018Jan1st-To-End-File7-Of-7498128.xml' &
+wget --header="Authorization: Bearer OxV6pG9dz2RkJq96PCCFP8KVnb1bUvxL" https://api.box.com/2.0/files/551498615086/content -O 'CaseComments-From2018Jan1st-To-End-File8-Of-7498128.xml' &
+wget --header="Authorization: Bearer OxV6pG9dz2RkJq96PCCFP8KVnb1bUvxL" https://api.box.com/2.0/files/551498597086/content -O 'CaseComments-From2018Jan1st-To-End-File9-Of-7498128.xml' &

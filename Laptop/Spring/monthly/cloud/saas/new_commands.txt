@@ -1,0 +1,64 @@
+
+Gcloud: 
+gcloud container clusters get-credentials gke1 --region us-east4 --project saas-dev-us-cstack-gke1 :    to login to GKE1
+
+
+Kubectl:
+    All the below commands can be run from local after gcloud credentials.
+    But they are slow.
+k get namespaces                                                                    : to get list of namespaces
+kubectl config set-context --current --namespace=sedicddata-js-dev                  : to set namespaces for surrent session
+kubectl get pxc cluster1 -o yaml > export.yml                                       : to get the cluster yaml; of pxc object type
+kubectl get configmap -n sedicddata-js-dev --sort-by=.metadata.creationTimestamp    : sort by date as an extra param
+C:\Users\anuryadav\Desktop\saas\sw\bin>helm uninstall mysql-operator-1-1591786901   : uninstall a particular release, happened using cmd only.
+kubectl -n sedicddata-js-dev  get pods                                              : to list all pods with a namespaces
+kubectl get pods -l app.kubernetes.io/instance=cluster4                             : all pods filtered by label
+
+
+
+Helm: 
+    Note: always use -n <namespace>
+helm uninstall mysql-operator-1-1591786901                                          : to uninstall a release; helm uninstall <release name>
+
+
+Failed: 
+kubectl delete deployment percona-xtradb-cluster-operator                           : to manually delete deployment object; but access denied
+
+
+
+Admin Run:
+Final run in pipeline: 
+    helm upgrade --install --namespace sedicddata-js-dev -f /values.yaml mysql-operator-jsdev-test2 https://artifactory-lvn.broadcom.net/artifactory/helm-release-candidate-local/mysql-operator/mysql-operator-1.1.1.tgz
+
+
+
+Percona MYSQL:
+
+kubectl run -i --rm --tty percona-client --image=percona:5.7 --restart=Never -- bash -il                : login into percona MYSQL
+mysql -h cluster4-proxysql -uroot -proot_password                                                       : change cluster name
+show databases ;                                                                                        : to get list of databases
+create table test1 (id INT(10)) ;                                                                       : create table
+insert into mysql.test1 values (102);                                                                   : insert table
+select * from mysql.test1;                                                                              : select table data
+
+
+
+
+GIT:
+git fetch --all
+git reset --hard origin/pipeline_sedicddata-js-mysql-2
+git push git@github.gwd.broadcom.net:dockcpdev/sedicddata-gdu1-js.git
+
+
+anurag_yadav@cloudshell:~ (saas-dev-us-sedicddata-js-dev)$ gsutil hmac create mysql-backup-js-1@saas-dev-us-sedicddata-js-dev.iam.gserviceaccount.com
+Access ID:   GOOG1EHO4JANGOLTVLFDSZ3VJRRBLGTZM7EYIEAQRDCRQQ3X3RKVOIWTHGQPY
+Secret:      5v3Arhf6S4+hZVMcYGc5zQJIK0rQKDqpg4crSJLv
+
+
+
+id-key js2 : GOOG1ETHDZNNYUQ4UXMEUQI6SVL6E37HDU35VKPBIHVEZYBHRNO6TRXTKLF5I
+secret-key : MQZCWrKYu/x38sr4B+0F9Bs9ohf1BjeTbI8nDOQo
+id: R09PRzFFVEhEWk5OWVVRNFVYTUVVUUk2U1ZMNkUzN0hEVTM1VktQQklIVkVaWUJIUk5PNlRSWFRLTEY1SQ==
+secret: TVFaQ1dyS1l1L3gzOHNyNEIrMEY5QnM5b2hmMUJqZVRiSThuRE9Rbw==
+
+#R09PRzFFVEhEWk5OWVVRNFVYTUVVUUk2U1ZMNkUzN0hEVTM1VktQQklIVkVaWUJIUk5PNlRSWFRLTEY1SQo=

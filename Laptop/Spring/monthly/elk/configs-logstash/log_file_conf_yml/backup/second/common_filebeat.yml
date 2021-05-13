@@ -1,0 +1,133 @@
+
+name: xml_data_shipper_win
+
+
+# file input automic case
+filebeat.inputs:
+- type: log
+  enabled: false
+  reload.enabled: true
+  paths:
+    - 'E:\casearchival\logstash\files\*.xml'
+
+
+  fields:
+    type: 'anurag'
+    source: 'Automic Archive Repository'
+    file_type: 'relatedxml'
+    sub_category: 'Problem'
+    url: 'https://casupport-qa.broadcom.com/case/archived?'
+
+
+# file input : knowledge_archival
+filebeat.inputs:
+- type: log
+  enabled: true
+  reload.enabled: true
+  paths:
+    - 'E:\casearchival\logstash\files\*.xml'
+
+
+  fields:
+    type: 'yadav'
+    source: 'Automic Archive Repository'
+    file_type: 'relatedxml'
+    sub_category: 'Problem'
+    url: 'https://casupport-qa.broadcom.com/case/archived?'
+
+# file input : layer7
+filebeat.inputs:
+- type: log
+  enabled: false
+  reload.enabled: true
+  paths:
+    - 'E:/casearchival/Layer7/*.xml'
+
+
+  fields:
+    type: 'layer7'
+    source: 'Layer7 Archive Repository'
+    file_type: 'casedetail'
+    sub_category: 'layer7_case_detail'
+    url: 'https://casupport-qa.broadcom.com/case/archived?'
+
+
+
+
+  multiline.pattern: ^
+  multiline.max_lines: 50000
+  multiline.timeout: 10s
+  multiline.match: after
+
+  fields_under_root: true
+  encoding: utf-8
+  exclude_files: ['.zip', '.gz$']
+  scan_frequency: 24h
+  harvester_limit: 60000    
+  close_eof: true
+
+
+  
+  #----------------------------- Logstash output --------------------------------
+output.logstash:
+  # The Logstash hosts
+  hosts: ["10.85.18.207:1947","10.85.18.207:1948"]
+  bulk_max_size: 8192
+  worker: 8
+  loadbalance: true
+  #ttl: 2
+  #index: annie
+  
+#============================= Filebeat modules ===============================
+
+filebeat.config.modules:
+  # Glob pattern for configuration loading
+  path: ${path.config}/modules.d/*.yml
+
+  # Set to true to enable config reloading
+#  reload.enabled: false
+
+  # Period on which files under path should be checked for changes
+  #reload.period: 10s
+ 
+# relatedxml casedetail
+
+#"Automic Archive Repository" 
+#"KB Archive Repository"
+#"Layer7 Archive Repository" 
+#"Nimsoft Archive Repository" 
+#"Rally Archive Repository"
+#"STAR Archive Repository"
+#"Xceedium Archive Repository"	
+
+#"automic_case_archival" 
+#"knowledge_archival"
+#"layer7" 
+#"nimsoft" 
+#"rally_case_archival" 
+#"star_case_archival"
+#"xceedium" 
+
+
+## LOGGING and DEBUG
+
+logging.level: debug
+
+#xpack.monitoring.elasticsearch:
+#xpack.monitoring.enabled: false
+
+#xpack.monitoring.enabled: true
+#xpack.monitoring.elasticsearch.hosts: ["http://10.85.18.204:9200"]
+
+#xpack.monitoring.collection.pipeline.details.enabled: true
+#xpack.monitoring.collection.pipeline.details.enabled: true
+
+#xpack.management.enabled: false
+    #username: beats_system
+    #password: somepassword
+
+#setup.dashboards.enabled: true
+#setup.kibana:
+#  host: "http://lnpvkibana02.ash.broadcom.net:5601"
+
+# ---------
