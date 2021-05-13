@@ -1,0 +1,1 @@
+The Demo folder contains the notebooks presented during the lecture. Beyond them, there are other practice notebooks present here. Some of the experiments in the practice notebooks were presented in the demo lab. The notebook names might differ.
